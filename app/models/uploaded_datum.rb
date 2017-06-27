@@ -1,0 +1,2 @@
+class UploadedDatum < ApplicationRecord
+end
