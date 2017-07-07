@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :uploaded_data, only: [:index, :create, :update, :destroy]
+
       resources :data_sets, only: [:index, :create, :show]
+      resources :users, only: [:create]
+      post '/auth', to: 'auth#create'
+      get '/current_user', to: 'auth#show'
     end
   end
 
