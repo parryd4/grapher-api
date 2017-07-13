@@ -10,38 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170629195535) do
+ActiveRecord::Schema.define(version: 20170713151819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "custom_charts", force: :cascade do |t|
+    t.bigint "data_set_id"
+    t.string "x"
+    t.string "y"
+    t.string "color", default: "red"
+    t.boolean "grid", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["data_set_id"], name: "index_custom_charts_on_data_set_id"
+  end
+
   create_table "data_sets", force: :cascade do |t|
     t.bigint "user_id"
     t.text "content"
+    t.string "file_name"
     t.boolean "public", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_data_sets_on_user_id"
-  end
-
-  create_table "uploaded_data", force: :cascade do |t|
-    t.string "c1"
-    t.string "c2"
-    t.string "c3"
-    t.string "c4"
-    t.string "c5"
-    t.string "c6"
-    t.string "c7"
-    t.string "c8"
-    t.string "c9"
-    t.string "c10"
-    t.string "c11"
-    t.string "c12"
-    t.string "c13"
-    t.string "c14"
-    t.string "c15"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -51,5 +43,6 @@ ActiveRecord::Schema.define(version: 20170629195535) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "custom_charts", "data_sets"
   add_foreign_key "data_sets", "users"
 end

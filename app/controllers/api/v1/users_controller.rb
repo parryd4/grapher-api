@@ -1,9 +1,8 @@
-class Api::V1::DataSetsController < ApplicationController
+class Api::V1::UsersController < ApplicationController
 
   def index
     # list all of the users
-    data_sets = DataSet.all
-    render json: data_sets.map { |d| {id: d.id, user_id: d.user_id, file_name: d.file_name}}
+    render json: "hi"
   end
 
   def create
@@ -12,13 +11,6 @@ class Api::V1::DataSetsController < ApplicationController
     # data_set = DataSet.new(params[:data_set])
     render json: data_set
     # render json: data_set.content
-  end
-
-  def show
-    # info about one particular row
-    data_set = DataSet.find(params[:id])
-    # render json: data_set.content
-    render json: data_set
   end
 
   private
